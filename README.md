@@ -33,9 +33,6 @@ parking fees, and parking records.
 - C++
 - [GUI Framework]
 
-## Project Structure
-Run on CLI
-
 ## How to Run
 Run on CLI
 
