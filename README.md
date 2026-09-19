@@ -33,6 +33,49 @@ parking fees, and parking records.
 - C++
 - [GUI Framework]
 
+## Project Structure
+SmartParking/
+│
+├── main.cpp
+│
+├── models/
+│   ├── Vehicle.h
+│   ├── Vehicle.cpp
+│   ├── ParkingSlot.h
+│   ├── ParkingSlot.cpp
+│   └── ParkingTicket.h
+│
+├── dsa/
+│   ├── CircularLinkedList.h
+│   ├── CircularLinkedList.cpp
+│   ├── Queue.h
+│   ├── Queue.cpp
+│   ├── BST.h
+│   └── BST.cpp
+│
+├── algorithms/
+│   ├── Search.h
+│   ├── Search.cpp
+│   ├── Sort.h
+│   └── Sort.cpp
+│
+├── parking/
+│   ├── ParkingLot.h
+│   ├── ParkingLot.cpp
+│   ├── ParkingManager.h
+│   └── ParkingManager.cpp
+│
+├── gui/
+│   ├── Dashboard.h
+│   ├── Dashboard.cpp
+│   ├── VehiclePage.h
+│   └── VehiclePage.cpp
+│
+├── data/
+│   └── parking_data.txt
+│
+└── README.md
+
 ## How to Run
 Run on CLI
 
