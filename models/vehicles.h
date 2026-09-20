@@ -19,4 +19,5 @@ public:
 
     string getPlateNumber();
     int getVehicleID();
+    string getVehicleModel();
 };

@@ -6,7 +6,7 @@
 using namespace std;
 /*/ Vehicle_identification::Vehicle_identification()
 {
-    
+
 }*/
 
 Vehicle_identification::Vehicle_identification(int id, string plate, string model_type)
@@ -23,10 +23,16 @@ void Vehicle_identification::displayInfo()
     cout << "Model: " << vehicleModel << "\n";
 }
 
-string getPlateNumber(){
-
+string Vehicle_identification::getPlateNumber()
+{
+    return plateNumber;
 }
-int getVehicleID(){
 
-
+int Vehicle_identification::getVehicleID()
+{
+    return vehicleID;
+}
+string Vehicle_identification::getVehicleModel()
+{
+    return vehicleModel;
 }
