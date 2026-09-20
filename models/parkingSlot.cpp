@@ -11,7 +11,10 @@ parking_slot:: parking_slot(int id, char zoneType, string status, string v_platn
     Vehicle_platnumber = v_platnumber;
 }
 
-void displayParkingSlot();
-// still cant figue out yet
-// still cant figue out yet
-// still cant figue out yet
+void parking_slot::displayParkingSlot()
+{
+    cout << "Slot ID: " << Slot_Id << endl;
+    cout << "Zone: " << zone << endl;
+    cout << "Status: " << Slot_status << endl;
+    cout << "Vehicle Plate: " << Vehicle_platnumber << endl;
+}
