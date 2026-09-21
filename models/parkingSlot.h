@@ -16,4 +16,4 @@ public:
     parking_slot(int id, char zoneType, string status, string v_platnumber);
 
     void displayParkingSlot();
-}
+};
