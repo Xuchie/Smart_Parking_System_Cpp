@@ -18,3 +18,11 @@ void parking_slot::displayParkingSlot()
     cout << "Status: " << Slot_status << endl;
     cout << "Vehicle Plate: " << Vehicle_platnumber << endl;
 }
+
+parking_slot::parking_slot()
+{
+    Slot_Id = 0;
+    zone = 'A';
+    Slot_status = "Available";
+    Vehicle_platnumber = "None";
+}

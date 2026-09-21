@@ -10,9 +10,15 @@ Count available/occupied slots*/
 
 using namespace std;
 
-void displayParkingSlot(){
+/*void displayParkingSlot(){
     //
 
-};
-
+};*/
+void ParkingLot::displayParkingSlot();
+{
+    for (int i = 0; i < 20; i++)
+    {
+        slots[i].displayParkingSlot();
+    }
+}
 
