@@ -1,106 +1,21 @@
-#include <iostream>
-#include "parkingLot.h"
+#ifndef PARKINGLOT_H
+#define PARKINGLOT_H
 
-using namespace std;
+#include "../models/parkingSlot.h"
 
-ParkingLot::ParkingLot()
+class ParkingLot
 {
-    // Zone A: Slot 1 - 10
-    for (int i = 0; i < 10; i++)
-    {
-        slots[i] = parking_slot(
-            i + 1,
-            'A',
-            "Available",
-            "None"
-        );
-    }
+private:
+    parking_slot slots[20];
 
-    // Zone B: Slot 11 - 20
-    for (int i = 10; i < 20; i++)
-    {
-        slots[i] = parking_slot(
-            i + 1,
-            'B',
-            "Available",
-            "None"
-        );
-    }
-}
+public:
+    ParkingLot();
 
-void ParkingLot::displayParkingSlots()
-{
-    cout << "\n========== PARKING LOT ==========\n";
+    void displayParkingSlots();
+    int findAvailableSlot();
+    bool parkVehicle(string plateNumber);
+    bool releaseSlot(string plateNumber);
+    int countAvailableSlots();
+};
 
-    for (int i = 0; i < 20; i++)
-    {
-        slots[i].displayParkingSlot();
-        cout << "--------------------------\n";
-    }
-}
-
-int ParkingLot::findAvailableSlot()
-{
-    for (int i = 0; i < 20; i++)
-    {
-        if (slots[i].getStatus() == "Available")
-        {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
-bool ParkingLot::parkVehicle(string plateNumber)
-{
-    int index = findAvailableSlot();
-
-    if (index == -1)
-    {
-        return false;
-    }
-
-    slots[index].parkVehicle(plateNumber);
-
-    cout << "Vehicle " << plateNumber
-         << " parked in Slot "
-         << slots[index].getSlotId()
-         << " (Zone " << slots[index].getZone() << ")\n";
-
-    return true;
-}
-
-bool ParkingLot::releaseSlot(string plateNumber)
-{
-    for (int i = 0; i < 20; i++)
-    {
-        if (slots[i].getVehiclePlate() == plateNumber)
-        {
-            slots[i].releaseSlot();
-
-            cout << "Vehicle " << plateNumber
-                 << " has left Slot "
-                 << slots[i].getSlotId() << ".\n";
-
-            return true;
-        }
-    }
-
-    return false;
-}
-
-int ParkingLot::countAvailableSlots()
-{
-    int count = 0;
-
-    for (int i = 0; i < 20; i++)
-    {
-        if (slots[i].getStatus() == "Available")
-        {
-            count++;
-        }
-    }
-
-    return count;
-}
+#endif

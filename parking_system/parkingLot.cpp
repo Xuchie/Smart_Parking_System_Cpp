@@ -1,18 +1,11 @@
-/*Create/manage parking slots
-Display all slots
-Find an available slot
-Assign a vehicle to a slot
-Release a slot when a vehicle leaves
-Count available/occupied slots*/
 #include <iostream>
-#include <string>
 #include "parkingLot.h"
 
 using namespace std;
 
 ParkingLot::ParkingLot()
 {
-    // Zone A: slots 1 - 10
+    // Zone A: Slot 1 - 10
     for (int i = 0; i < 10; i++)
     {
         slots[i] = parking_slot(
@@ -23,7 +16,7 @@ ParkingLot::ParkingLot()
         );
     }
 
-    // Zone B: slots 11 - 20
+    // Zone B: Slot 11 - 20
     for (int i = 10; i < 20; i++)
     {
         slots[i] = parking_slot(
@@ -42,7 +35,7 @@ void ParkingLot::displayParkingSlots()
     for (int i = 0; i < 20; i++)
     {
         slots[i].displayParkingSlot();
-        cout << "-------------------------------\n";
+        cout << "--------------------------\n";
     }
 }
 
@@ -50,11 +43,64 @@ int ParkingLot::findAvailableSlot()
 {
     for (int i = 0; i < 20; i++)
     {
-        if (/* slot is available */ true)
+        if (slots[i].getStatus() == "Available")
         {
             return i;
         }
     }
 
     return -1;
+}
+
+bool ParkingLot::parkVehicle(string plateNumber)
+{
+    int index = findAvailableSlot();
+
+    if (index == -1)
+    {
+        return false;
+    }
+
+    slots[index].parkVehicle(plateNumber);
+
+    cout << "Vehicle " << plateNumber
+         << " parked in Slot "
+         << slots[index].getSlotId()
+         << " (Zone " << slots[index].getZone() << ")\n";
+
+    return true;
+}
+
+bool ParkingLot::releaseSlot(string plateNumber)
+{
+    for (int i = 0; i < 20; i++)
+    {
+        if (slots[i].getVehiclePlate() == plateNumber)
+        {
+            slots[i].releaseSlot();
+
+            cout << "Vehicle " << plateNumber
+                 << " has left Slot "
+                 << slots[i].getSlotId() << ".\n";
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int ParkingLot::countAvailableSlots()
+{
+    int count = 0;
+
+    for (int i = 0; i < 20; i++)
+    {
+        if (slots[i].getStatus() == "Available")
+        {
+            count++;
+        }
+    }
+
+    return count;
 }
