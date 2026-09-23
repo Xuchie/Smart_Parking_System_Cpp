@@ -17,6 +17,10 @@ public:
     void findVehicle();
     void displayParkingSlots();
     void displayAvailableSlots();
+
+    void displayZones();
+    void nextZone();
+    void previousZone();
 };
 
 #endif

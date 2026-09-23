@@ -1,11 +1,13 @@
 #include <iostream>
 #include "parkingLot.h"
 
+
+
 using namespace std;
 
 ParkingLot::ParkingLot()
 {
-    // Zone A: Slot 1 - 10
+    // Zone A Slot 1 - 10
     for (int i = 0; i < 10; i++)
     {
         slots[i] = parking_slot(
@@ -16,7 +18,7 @@ ParkingLot::ParkingLot()
         );
     }
 
-    // Zone B: Slot 11 - 20
+    // Zone B Slot 11 - 20
     for (int i = 10; i < 20; i++)
     {
         slots[i] = parking_slot(
@@ -26,6 +28,9 @@ ParkingLot::ParkingLot()
             "None"
         );
     }
+
+    zones.addZone("Zone A");
+    zones.addZone("Zone B");
 }
 
 void ParkingLot::displayParkingSlots()
@@ -103,4 +108,19 @@ int ParkingLot::countAvailableSlots()
     }
 
     return count;
+}
+
+void ParkingLot::displayZones()
+{
+    zones.displayZones();
+}
+
+void ParkingLot::nextZone()
+{
+    zones.nextZone();
+}
+
+void ParkingLot::previousZone()
+{
+    zones.previousZone();
 }

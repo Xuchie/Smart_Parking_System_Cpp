@@ -80,3 +80,18 @@ void ParkingManager::displayAvailableSlots()
          << parkingLot.countAvailableSlots()
          << endl;
 }
+
+void ParkingManager::displayZones()
+{
+    parkingLot.displayZones();
+}
+
+void ParkingManager::nextZone()
+{
+    parkingLot.nextZone();
+}
+
+void ParkingManager::previousZone()
+{
+    parkingLot.previousZone();
+}
