@@ -46,8 +46,8 @@ SmartParking/
 │   └── ParkingTicket.h
 │
 ├── dsa/
-│   ├── CircularLinkedList.h
-│   ├── CircularLinkedList.cpp
+│   ├── doublycircularLL.h
+│   ├── doublycircularLL.cpp
 │   ├── Queue.h
 │   ├── Queue.cpp
 │   ├── BST.h
