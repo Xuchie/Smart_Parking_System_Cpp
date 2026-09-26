@@ -11,8 +11,7 @@ void DoublyCircularLinkedList::addZone(string zoneName)
 {
     ZoneNode* newNode = new ZoneNode(zoneName);
 
-    // If the list is empty
-    if (head == nullptr)
+    if (head == nullptr)// If the list is empty, just in case, we can set the new node as the head and make it point to itself for both next and previous pointers.
     {
         head = newNode;
 

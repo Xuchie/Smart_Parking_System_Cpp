@@ -31,6 +31,10 @@ public:
 
     void enqueue(string plateNumber, string vehicleModel);
     void dequeue();
+
+    string getFrontPlate();
+    string getFrontModel();
+    
     void displayQueue();
     bool isEmpty();
 };

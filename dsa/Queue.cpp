@@ -24,7 +24,7 @@ void Queue::enqueue(string plateNumber, string vehicleModel)
         return;
     }
 
-    rear->next = newNode;// Add new vehicle to the rear
+    rear->next = newNode;
     rear = newNode;
 }
 
@@ -38,18 +38,34 @@ void Queue::dequeue()
 
     QueueNode* temp = front;
 
-    cout << "Vehicle " << front->plateNumber
-         << " is removed from the waiting queue.\n";
-
     front = front->next;
 
-    // If queue becomes empty
     if (front == nullptr)
     {
         rear = nullptr;
     }
 
     delete temp;
+}
+
+string Queue::getFrontPlate()
+{
+    if (isEmpty())
+    {
+        return "None";
+    }
+
+    return front->plateNumber;
+}
+
+string Queue::getFrontModel()
+{
+    if (isEmpty())
+    {
+        return "None";
+    }
+
+    return front->vehicleModel;
 }
 
 void Queue::displayQueue()
@@ -66,7 +82,6 @@ void Queue::displayQueue()
 
     while (current != nullptr)
     {
-        cout << "--------------------------\n";
         cout << "Plate: " << current->plateNumber << endl;
         cout << "Model: " << current->vehicleModel << endl;
         cout << "--------------------------\n";

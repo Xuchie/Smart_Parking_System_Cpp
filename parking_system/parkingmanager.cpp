@@ -1,6 +1,8 @@
 
 #include <iostream>
 #include "parkingManager.h"
+#include "../algorithms/search.h"
+#include "../algorithms/sortingAlgo.h"
 
 using namespace std;
 
@@ -33,7 +35,14 @@ void ParkingManager::parkVehicle()
     }
     else
     {
-        cout << "Sorry, no available parking slot.\n";
+        cout << "Parking lot is full.\n";
+
+        waitingQueue.enqueue(
+            vehicle.getPlateNumber(),
+            vehicle.getVehicleModel()
+        );
+
+        cout << "Vehicle added to waiting queue.\n";
     }
 }
 
@@ -41,21 +50,35 @@ void ParkingManager::removeVehicle()
 {
     string plate;
 
-    cout << "\n========== REMOVE VEHICLE ==========\n";
+    cout << "\n========== EXIT VEHICLE ==========\n";
 
     cout << "Enter Plate Number: ";
     cin >> plate;
 
     if (parkingLot.releaseSlot(plate))
     {
-        cout << "Vehicle removed successfully!\n";
+        cout << "Vehicle exited successfully!\n";
+
+        // Check waiting queue
+        if (!waitingQueue.isEmpty())
+        {
+            string waitingPlate = waitingQueue.getFrontPlate();
+
+            if (parkingLot.parkVehicle(waitingPlate))
+            {
+                cout << "Waiting vehicle "
+                     << waitingPlate
+                     << " has been parked.\n";
+
+                waitingQueue.dequeue();
+            }
+        }
     }
     else
     {
         cout << "Vehicle not found.\n";
     }
 }
-
 void ParkingManager::findVehicle()
 {
     string plate;
@@ -65,10 +88,33 @@ void ParkingManager::findVehicle()
     cout << "Enter Plate Number: ";
     cin >> plate;
 
-    // Search functionality will be added later.
-    cout << "Search for " << plate << " will be implemented next.\n";
-}
+    int index = searchVehicle(
+        parkingLot.getSlots(),
+        20,
+        plate
+    );
 
+    if (index != -1)
+    {
+        cout << "\nVehicle Found!\n";
+
+        cout << "Slot ID: "
+             << parkingLot.getSlots()[index].getSlotId()
+             << endl;
+
+        cout << "Zone: "
+             << parkingLot.getSlots()[index].getZone()
+             << endl;
+
+        cout << "Plate Number: "
+             << parkingLot.getSlots()[index].getVehiclePlate()
+             << endl;
+    }
+    else
+    {
+        cout << "Vehicle not found.\n";
+    }
+}
 void ParkingManager::displayParkingSlots()
 {
     parkingLot.displayParkingSlots();
@@ -79,6 +125,12 @@ void ParkingManager::displayAvailableSlots()
     cout << "\nAvailable Slots: "
          << parkingLot.countAvailableSlots()
          << endl;
+}
+void ParkingManager::sortParkingSlots()
+{
+    sortSlots(parkingLot.getSlots(), 20);
+
+    cout << "\nParking slots sorted successfully!\n";
 }
 
 void ParkingManager::displayZones()
